@@ -5,6 +5,75 @@
 
 ---
 
+## Practice
+
+1. [Test 1](docs/01.test.md)
+2. Test 2
+3. Test 3
+4. Final
+
+---
+
+## Exam
+
+Each user is given their own CDH6 (currently 6.1.1) cluster pre-loaded with Spark 2.4.
+
+- Number of Questions: **8–12** performance-based (hands-on) tasks on Cloudera Enterprise cluster. See below for full cluster configuration
+- Time Limit: **120 minutes**
+- Passing Score: 70% (6 ~ 9 tasks)
+- Language: English
+- Price: USD $295
+
+---
+
+## Upload data to HDFS
+
+```bash
+sudo yum install git
+git clone https://github.com/proedu-organisation/CCA-175-practice-tests-resource.git resource
+hdfs dfs -copyFromLocal resource/retail_db db
+```
+
+![](https://github.com/proedu-organisation/CCA-175-practice-tests-resource/raw/master/images/Retail_DB.png)
+
+```bash
+categories/part-m-00000
+
+customers/part-m-00000
+
+customers-avro/part-m-00000.avro
+customers-avro/part-m-00001.avro
+customers-avro/part-m-00002.avro
+customers-avro/part-m-00003.avro
+
+customers-tab-delimited/part-m-00000
+
+departments/part-m-00000
+
+order_items/part-m-00000
+
+orders/part-m-00000
+
+orders_parquet/741ca897-c70e-4633-b352-5dc3414c5680.parquet
+
+orders_permissions/part-m-00000
+orders_permissions/part-m-00001
+orders_permissions/part-m-00002
+orders_permissions/part-m-00003
+
+products/part-m-00000
+
+products_avro/part-m-00000.avro
+products_avro/part-m-00001.avro
+products_avro/part-m-00002.avro
+products_avro/part-m-00003.avro
+
+products_sequencefile/part-00000
+products_sequencefile/part-00001
+```
+
+---
+
 ## Start
 
 ### Download
@@ -68,6 +137,13 @@ echo 'export PATH=$PATH:$SPARK_HOME/sbin' >> ~/.bash_profile
 source ~/.bash_profile
 ```
 
+#### Avro
+
+```bash
+curl -O https://repo1.maven.org/maven2/org/apache/spark/spark-avro_2.12/2.4.7/spark-avro_2.12-2.4.7.jar
+mv spark-avro_2.12-2.4.7.jar $SPARK_HOME/jars
+```
+
 #### Hadoop
 
 ```bash
@@ -121,6 +197,10 @@ cat <<EOF | tee $HADOOP_HOME/etc/hadoop/yarn-site.xml
   <property>
     <name>yarn.nodemanager.aux-services</name>
     <value>mapreduce_shuffle</value>
+    <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>false</value>
+    <name>yarn.nodemanager.vmem-pmem-ratio</name>
+    <value>5</value>
   </property>
 </configuration>
 EOF
@@ -143,7 +223,7 @@ echo 'export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop' >> $SPARK_HOME/conf/spark-en
 hdfs namenode -format
 ```
 
-### Start
+### Start HDFS, YARN
 
 ```bash
 start-dfs.sh
@@ -168,31 +248,23 @@ hdfs dfs -mkdir -p /user/$USER
 hdfs dfs -ls -R /
 ```
 
----
+### Start Spark Shell
 
-## Exam
+```bash
+spark-shell --master yarn --deploy-mode client --driver-memory 2g
+```
 
-Each user is given their own CDH6 (currently 6.1.1) cluster pre-loaded with Spark 2.4.
+```bash
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _  / __/   _/
+   /___/ .__/\_,_/_/ /_/\_\   version 2.4.7
+      /_/
 
-- Number of Questions: **8–12** performance-based (hands-on) tasks on Cloudera Enterprise cluster. See below for full cluster configuration
-- Time Limit: **120 minutes**
-- Passing Score: 70% (6 ~ 9 tasks)
-- Language: English
-- Price: USD $295
+Using Scala version 2.12.10 (OpenJDK 64-Bit Server VM, Java 1.8.0_272)
+Type in expressions to have them evaluated.
+Type :help for more information.
 
-### Exam Question Format
-Each CCA question requires you to solve a particular scenario. In some cases, a tool such as **Impala** or **Hive** may be used. In most cases, coding is required.
-
-### Evaluation, Score Reporting, and Certificate
-Your exam is graded immediately upon submission and you are e-mailed a score report within three days of your exam. Your score report displays the problem number for each problem you attempted and a grade on that problem. If you fail a problem, the score report includes the criteria you failed (e.g., “Records contain incorrect data” or “Incorrect file format”). We do not report more information in order to protect the exam content. Read more about reviewing exam content on the FAQ.
-
-If you pass the exam, you receive a second e-mail within a week of your exam with your digital certificate as a PDF and your license number.
-
-### Audience and Prerequisites
-There are **no prerequisites required** to take any Cloudera certification exam. The CCA Spark and Hadoop Developer exam (CCA175) follows the same objectives as [Cloudera Developer Training for Spark and Hadoop](https://www.cloudera.com/about/training/courses/developer-training-for-spark-and-hadoop.html) and the training course is an excellent preparation for the exam. 
-
-### Required Skills
-
-- Transform, Stage, and Store: Load data from HDFS for use in Spark applications
-- Data Analysis: Use Spark SQL to interact with the metastore
-- Configuration: change your application configuration, such as increasing available memory
+scala>
+```
