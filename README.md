@@ -81,7 +81,7 @@ cat <<EOF | tee $HADOOP_HOME/etc/hadoop/core-site.xml
 <configuration>
   <property>
     <name>fs.defaultFS</name>
-    <value>hdfs://$IP:9000</value>
+    <value>hdfs://my.example.com:9000</value>
   </property>
 </configuration>
 EOF
@@ -139,6 +139,7 @@ echo 'export YARN_CONF_DIR=$HADOOP_HOME/etc/hadoop' >> $SPARK_HOME/conf/spark-en
 ### Format
 
 ```bash
+# Clean up # rm -rf /tmp/hadoop-$USER
 hdfs namenode -format
 ```
 
@@ -151,6 +152,13 @@ start-yarn.sh
 
 ```bash
 jps
+
+6867 DataNode
+7475 NodeManager
+6734 NameNode
+7038 SecondaryNameNode
+7198 ResourceManager
+7615 Jps
 ```
 
 ### Working directory
