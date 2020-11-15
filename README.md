@@ -8,7 +8,7 @@
 ## Practice
 
 1. [Test 1](docs/01.test.md)
-2. Test 2
+2. [Test 2](docs/02.test.md)
 3. Test 3
 4. Final
 
@@ -119,10 +119,10 @@ ssh-keyscan -t ecdsa $IP >> ~/.ssh/known_hosts
 ssh-keyscan -t ecdsa 0.0.0.0 >> ~/.ssh/known_hosts
 ```
 
-### Install Hadoop, Spark
+### Install Hadoop, Spark, Hive
 
 ```bash
-mkdir ~/hadoop ~/spark
+mkdir ~/hadoop ~/spark ~/hive
 tar xvzf /share/hadoop-2.7.7.tar.gz -C ~/hadoop --strip-components=1
 tar xvzf /share/spark-2.4.7-bin-without-hadoop-scala-2.12.tgz -C ~/spark --strip-components=1
 ```
