@@ -29,7 +29,7 @@ Each user is given their own CDH6 (currently 6.1.1) cluster pre-loaded with Spar
 ## Upload data to HDFS
 
 ```bash
-sudo yum install git
+sudo yum install -y git
 git clone https://github.com/proedu-organisation/CCA-175-practice-tests-resource.git resource
 hdfs dfs -copyFromLocal resource/retail_db db
 ```
@@ -267,4 +267,9 @@ Type in expressions to have them evaluated.
 Type :help for more information.
 
 scala>
+```
+
+```scala
+spark.conf.getAll
+spark.catalog.listTables().show()
 ```
