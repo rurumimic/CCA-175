@@ -1,16 +1,44 @@
 # CCA-175 practice
 
+## Links
+
+**Cloudera**
+
 - [CCA Spark and Hadoop Developer](https://www.cloudera.com/about/training/certification/cca-spark.html) Exam
-- [Dataset](https://github.com/proedu-organisation/CCA-175-practice-tests-resource)
+- [FAQ](https://www.cloudera.com/about/training/certification/faq.html)
+
+**Spark**
+
+- [2.4.7](https://spark.apache.org/docs/2.4.7/)
+- Guide: [RDD](https://spark.apache.org/docs/2.4.7/rdd-programming-guide.html)
+- Guide: [SQL](https://spark.apache.org/docs/2.4.7/sql-programming-guide.html)
+- API: [Scala](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.package)
+  - sql.expressions.[WindowSpec](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.sql.expressions.WindowSpec)
+  - sql.[functions](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.sql.functions$)
+  - sql.[Column](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.sql.Column)
+  - sql.[Dataset](https://spark.apache.org/docs/2.4.7/api/scala/index.html#org.apache.spark.sql.Dataset)
+- 1.6.0: [SQL & DataFrame & Dataset](https://spark.apache.org/docs/1.6.0/sql-programming-guide.html)
+- 1.3.0: [SQL & DataFrame](https://spark.apache.org/docs/1.3.0/sql-programming-guide.html)
+
+**databricks**
+
+- [Catalyst Optimizer](https://databricks.com/blog/2015/04/13/deep-dive-into-spark-sqls-catalyst-optimizer.html)
+- [Tungsten](https://databricks.com/blog/2015/04/28/project-tungsten-bringing-spark-closer-to-bare-metal.html)
+
+**GitHub**
+
+- Practice: [dataset](https://github.com/proedu-organisation/CCA-175-practice-tests-resource)
 
 ---
+
+[Summary](docs/00.md)
 
 ## Practice
 
 1. [Test 1](docs/01.test.md)
 2. [Test 2](docs/02.test.md)
-3. Test 3
-4. Final
+3. [Test 3](docs/03.test.md)
+4. [Final](docs/04.final.md)
 
 ---
 
